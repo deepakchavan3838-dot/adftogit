@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "datafact202601"
+		},
+		"azuresqlls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'azuresqlls'"
+		},
+		"azuresqlls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "databserber202601.database.windows.net"
+		},
+		"azuresqlls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "database202601"
+		},
+		"azuresqlls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "avd"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "datafact202601_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"azuresqlls_password": {
+						"value": "[parameters('azuresqlls_password')]"
+					},
+					"azuresqlls_properties_typeProperties_server": {
+						"value": "[parameters('azuresqlls_properties_typeProperties_server')]"
+					},
+					"azuresqlls_properties_typeProperties_database": {
+						"value": "[parameters('azuresqlls_properties_typeProperties_database')]"
+					},
+					"azuresqlls_properties_typeProperties_userName": {
+						"value": "[parameters('azuresqlls_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

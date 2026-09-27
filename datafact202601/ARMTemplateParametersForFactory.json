@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafact202601"
+		},
+		"azuresqlls_password": {
+			"value": ""
+		},
+		"azuresqlls_properties_typeProperties_server": {
+			"value": "databserber202601.database.windows.net"
+		},
+		"azuresqlls_properties_typeProperties_database": {
+			"value": "database202601"
+		},
+		"azuresqlls_properties_typeProperties_userName": {
+			"value": "avd"
+		}
+	}
+}
